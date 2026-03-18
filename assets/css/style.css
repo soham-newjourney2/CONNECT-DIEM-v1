@@ -1,0 +1,2521 @@
+/* ==========================================
+   CONNECT - Complete CSS (Extended Version)
+   Author: Connect Team
+   ~2500 lines
+   ========================================== */
+
+/* ---------------- Root Variables ---------------- */
+body.light-mode {
+    --bg-color: #f9f9f9;
+    --text-color: #222;
+    --header-bg: #ffffff;
+    --footer-bg: #1a1a1a;
+    --btn-bg: #0073e6;
+    --btn-color: #fff;
+    --btn-secondary-bg: #555;
+    --card-blue-bg: #0073e6;
+    --card-black-bg: #f0f0f0;
+    --card-text-color: #222;
+}
+
+body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #f1f1f1;
+    --header-bg: #1b1b1b;
+    --footer-bg: #0d0d0d;
+    --btn-bg: #1a73e8;
+    --btn-color: #fff;
+    --btn-secondary-bg: #333;
+    --card-blue-bg: #1a73e8;
+    --card-black-bg: #383636;
+    --card-text-color: #f1f1f1;
+}
+
+/* ---------------- Global Reset ---------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* ---------------- Header ---------------- */
+header {
+    background-color: var(--header-bg);
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--btn-bg);
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    margin-left: 25px;
+    position: relative;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--btn-bg);
+}
+
+/* Dropdown menu */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 35px;
+    left: 0;
+    background-color: var(--header-bg);
+    min-width: 150px;
+    border-radius: 5px;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 15px;
+    color: var(--text-color);
+}
+
+.dropdown-menu li a:hover {
+    background-color: var(--btn-bg);
+    color: #fff;
+}
+
+/* Dark mode toggle button */
+.dark-mode-toggle button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+/* Mobile menu toggle */
+.mobile-menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 1.8rem;
+    margin-left: 15px;
+}
+
+/* ---------------- Mobile Menu ---------------- */
+.mobile-menu {
+    display: none;
+    background-color: var(--header-bg);
+    padding: 10px 0;
+}
+
+.mobile-menu.active {
+    display: block;
+}
+
+.mobile-menu ul {
+    list-style: none;
+}
+
+.mobile-menu ul li {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.mobile-menu ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+/* ---------------- Hero Section ---------------- */
+.hero {
+    background: linear-gradient(135deg, var(--btn-bg), var(--card-blue-bg));
+    color: #fff;
+    padding: 100px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-container {
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.hero-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.hero-text .btn {
+    margin-right: 15px;
+}
+
+.hero-image {
+    flex: 1;
+    text-align: center;
+}
+
+.hero-icon {
+    font-size: 10rem;
+    opacity: 0.2;
+}
+
+/* ---------------- Buttons ---------------- */
+.btn {
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: var(--btn-bg);
+    color: var(--btn-color);
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.btn-secondary {
+    background-color: var(--btn-secondary-bg);
+    color: var(--btn-color);
+}
+
+.btn-secondary:hover {
+    opacity: 0.9;
+}
+
+/* ---------------- Features Section ---------------- */
+.features {
+    padding: 80px 20px;
+    background-color: var(--bg-color);
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background-color: var(--card-black-bg);
+    padding: 30px 20px;
+    border-radius: 10px;
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
+    color: var(--card-text-color);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-icon {
+    margin-bottom: 15px;
+    color: var(--btn-bg);
+}
+
+/* ---------------- Highlights Section ---------------- */
+.highlights {
+    background-color: var(--bg-color);
+    padding: 70px 20px;
+    text-align: center;
+}
+
+.highlights-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.highlight-card {
+    flex: 1;
+    min-width: 250px;
+    background-color: var(--card-black-bg);
+    color: var(--card-text-color);
+    padding: 30px 20px;
+    border-radius: 10px;
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
+}
+
+.highlight-card:hover {
+    transform: translateY(-10px);
+}
+
+.highlight-card i {
+    margin-bottom: 15px;
+    color: var(--btn-bg);
+}
+
+/* ---------------- CTA Section ---------------- */
+.cta {
+    background-color: var(--btn-bg);
+    color: #fff;
+    padding: 80px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 50px 0;
+}
+
+.cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.cta p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.cta .btn {
+    margin: 5px;
+}
+
+/* ---------------- Footer ---------------- */
+footer {
+    background-color: var(--footer-bg);
+    color: #fff;
+    padding: 50px 20px 20px;
+    font-size: 0.9rem;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.footer-col h4 {
+    margin-bottom: 20px;
+    color: var(--btn-bg);
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-col ul li a:hover {
+    color: var(--btn-bg);
+}
+
+.footer-col p {
+    margin-bottom: 10px;
+}
+
+.footer-col form input[type="email"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+.footer-col form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--btn-bg);
+    color: #fff;
+    cursor: pointer;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* ---------------- Dashboard Section ---------------- */
+.dashboard-main {
+    padding: 40px 20px;
+    min-height: calc(100vh - 120px);
+    background-color: var(--bg-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dashboard-header h1 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.dashboard-header p {
+    color: var(--text-color);
+    margin-bottom: 30px;
+}
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.dashboard-cards .card {
+    background-color: var(--card-black-bg);
+    color: var(--card-text-color);
+    border-radius: 15px;
+    padding: 25px 20px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s, color 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dashboard-cards .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+}
+
+.dashboard-cards .card i {
+    margin-bottom: 15px;
+    color: var(--btn-bg);
+    transition: transform 0.3s, color 0.3s;
+}
+
+.dashboard-cards .card:hover i {
+    transform: scale(1.2);
+}
+
+.dashboard-cards .card h3 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.dashboard-cards .card p {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.dashboard-cards .card .btn {
+    align-self: center;
+    margin-top: auto;
+}
+
+/* ---------------- Responsive Dashboard ---------------- */
+@media (max-width: 1024px) {
+    .dashboard-cards {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------------- Login Page ---------------- */
+body.light-mode {
+    --login-bg-gradient: linear-gradient(135deg, #f9f9f9, #e0e0e0);
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --card-color: #222;
+    --input-bg: rgba(255, 255, 255, 0.8);
+    --input-color: #222;
+    --input-placeholder: rgba(34,34,34,0.6);
+    --btn-bg: #0073e6;
+    --btn-color: #fff;
+    --icon-color: #0073e6;
+    --link-color: #0073e6;
+    --error-color: #ff4c4c;
+}
+
+body.dark-mode {
+    --login-bg-gradient: linear-gradient(135deg, #121212, #1b1b1b);
+    --card-bg: rgba(30, 30, 30, 0.85);
+    --card-color: #f1f1f1;
+    --input-bg: rgba(50, 50, 50, 0.7);
+    --input-color: #f1f1f1;
+    --input-placeholder: rgba(255,255,255,0.6);
+    --btn-bg: #00bfff;
+    --btn-color: #121212;
+    --icon-color: #00bfff;
+    --link-color: #00bfff;
+    --error-color: #ff4c4c;
+}
+
+/* ==========================================
+   LOGIN PAGE STYLES (Light & Dark Mode)
+   Author: Connect Team
+   ========================================== */
+
+/* ---------------- Login Section ---------------- */
+.login-section {
+    position: relative;
+    background: var(--login-bg-gradient);
+    padding: 100px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    transition: background 0.3s ease;
+}
+
+.login-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.3); /* overlay for contrast */
+    z-index: 0;
+}
+
+.login-container {
+    position: relative;
+    z-index: 1;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    border-radius: 15px;
+    padding: 50px 40px;
+    width: 100%;
+    max-width: 400px;
+    color: var(--card-color);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s, color 0.3s;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+
+}
+
+.login-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 50px rgba(0,0,0,0.4);
+}
+
+.login-container h2 {
+    margin: 20px 0 30px;
+    color: var(--icon-color);
+}
+
+.login-icon {
+    font-size: 3rem;
+    color: var(--icon-color);
+    animation: bounce 2s infinite;
+    margin-bottom: 15px;
+}
+
+/* ---------------- Animations ---------------- */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* ---------------- Login Form ---------------- */
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.input-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    background: var(--input-bg);
+    color: var(--input-color);
+    font-size: 1rem;
+    transition: background 0.3s, box-shadow 0.3s, color 0.3s;
+}
+
+.input-wrapper input::placeholder {
+    color: var(--input-placeholder);
+}
+
+.input-wrapper input:focus {
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0 0 10px var(--icon-color);
+}
+
+.input-icon {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: var(--icon-color);
+    font-size: 1.2rem;
+}
+
+/* ---------------- Login Button ---------------- */
+.login-container form button {
+    padding: 15px;
+    border: none;
+    border-radius: 50px;
+    background-color: var(--btn-bg);
+    color: var(--btn-color);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease, transform 0.3s;
+    
+}
+
+.login-container form button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+/* ---------------- Error & Messages ---------------- */
+.error-msg {
+    color: var(--error-color);
+    margin-bottom: 15px;
+    font-weight: bold;
+    animation: shake 0.3s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.forgot-pass a,
+.signup-link a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-pass a:hover,
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 768px) {
+    .login-section {
+        padding: 70px 15px;
+    }
+    .login-container {
+        padding: 40px 30px;
+    }
+    .login-container h2 {
+        font-size: 1.8rem;
+    }
+    .login-icon {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-section {
+        padding: 50px 10px;
+    }
+    .login-container {
+        padding: 35px 20px;
+    }
+    .login-container h2 {
+        font-size: 1.5rem;
+    }
+    .login-icon {
+        font-size: 2rem;
+    }
+    .input-wrapper input {
+        padding: 12px 12px 12px 40px;
+    }
+    .input-icon {
+        font-size: 1rem;
+        left: 12px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================================
+   🎓 STUDENT ATTENDANCE PAGE (Enhanced)
+================================ */
+.attendance-section {
+  width: 95%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--card-black-bg);
+  color: var(--text-color);
+  border-radius: 18px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+body.light-mode .attendance-section {
+  background: #fdfdfd;
+  color: #222;
+}
+
+.dashboard-header h1,.dashboard-header p{
+    text-align: center;
+}
+
+/* Title */
+.attendance-section h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--btn-bg);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 6px rgba(0,0,0,0.3);
+}
+
+/* Table Container */
+.attendance-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+/* Table */
+.attendance-table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+
+.attendance-table thead {
+  background: linear-gradient(135deg, var(--btn-bg), var(--card-blue-bg));
+  color: #fff;
+}
+
+body.light-mode .attendance-table thead {
+  background: linear-gradient(135deg, #007bff, #00bcd4);
+  color: #fff;
+}
+
+/* Cells */
+.attendance-table th,
+.attendance-table td {
+  text-align: center;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  transition: background 0.3s;
+}
+
+body.light-mode .attendance-table th,
+body.light-mode .attendance-table td {
+  color: #222;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Row Hover */
+.attendance-table tr:hover {
+  background: rgba(255,255,255,0.08);
+}
+body.light-mode .attendance-table tr:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+/* Status Badges */
+.status {
+  padding: 0.4rem 0.9rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: inline-block;
+  letter-spacing: 0.4px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.25);
+}
+
+.status.present {
+  background: #27ae60;
+  color: #fff;
+}
+
+.status.absent {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.status.late {
+  background: #f1c40f;
+  color: #000;
+}
+
+/* Attendance Summary */
+.attendance-message {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  background: var(--footer-bg);
+  border-radius: 14px;
+  text-align: center;
+  color: var(--text-color);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+body.light-mode .attendance-message {
+  background: #fff;
+  color: #222;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+}
+
+.attendance-message:hover {
+  transform: scale(1.02);
+}
+
+.attendance-message p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.attendance-message strong {
+  color: var(--btn-bg);
+}
+
+/* Scrollbar Styling for Table */
+.attendance-table-container::-webkit-scrollbar {
+  height: 8px;
+}
+.attendance-table-container::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.1);
+}
+.attendance-table-container::-webkit-scrollbar-thumb {
+  background: var(--btn-bg);
+  border-radius: 10px;
+}
+
+/* Mobile & Tablet Responsive */
+@media (max-width: 992px) {
+  .attendance-section {
+    padding: 1.5rem;
+  }
+  .attendance-section h1 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .attendance-table th, .attendance-table td {
+    padding: 0.8rem 0.5rem;
+    font-size: 0.85rem;
+  }
+  .attendance-message {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .attendance-section {
+    width: 100%;
+    border-radius: 0;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .attendance-table-container {
+    border-radius: 8px;
+  }
+
+  .attendance-table {
+    min-width: 500px;
+  }
+
+  .attendance-section h1 {
+    font-size: 1.4rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================================
+   📘 Marks Page Styling
+================================= */
+
+.content-section {
+    padding: 60px 8%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.marks-section {
+    width: 100%;
+    max-width: 1100px;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+/* Table Container */
+.marks-container {
+    width: 100%;
+    overflow-x: auto;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 20px;
+}
+
+/* Table Styling */
+.marks-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.marks-table th, .marks-table td {
+    padding: 14px 12px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.marks-table th {
+    background-color: var(--table-header-bg);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.marks-table tr:hover {
+    background-color: var(--hover-bg);
+    transition: 0.3s ease;
+}
+
+.no-data {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 30px 0;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .marks-table th, .marks-table td {
+        padding: 10px 8px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Light Mode Variables */
+body.light-mode {
+    --text-color: #222;
+    --text-muted: #555;
+    --card-bg: #fff;
+    --border-color: #ddd;
+    --hover-bg: #f7f7f7;
+    --table-header-bg: #f0f0f0;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --text-color: #f0f0f0;
+    --text-muted: #aaa;
+    --card-bg: #1f1f1f;
+    --border-color: #333;
+    --hover-bg: #2b2b2b;
+    --table-header-bg: #292929;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Learning Hub Styles */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.resource-card {
+    background: var(--card-bg);
+    color: var(--card-color);
+    padding: 25px 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.15);
+}
+
+.resource-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    color: var(--btn-bg);
+}
+
+.resource-card .resource-desc {
+    flex-grow: 1;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.resource-card .resource-meta {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    color: rgba(100,100,100,0.8);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .resources-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Collaboration Section */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.post-card {
+    background: var(--card-bg);
+    color: var(--card-color);
+    padding: 25px 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.15);
+}
+
+.post-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--btn-bg);
+}
+
+.post-meta {
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+    color: rgba(100,100,100,0.8);
+}
+
+.post-content {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    white-space: pre-wrap;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .posts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Doubt Section */
+.doubt-form-card {
+    background: var(--card-bg);
+    color: var(--card-color);
+    padding: 25px 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.doubt-form-card .form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.doubt-form-card label {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.doubt-form-card input,
+.doubt-form-card textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: var(--input-bg);
+    color: var(--input-color);
+    outline: none;
+    transition: border 0.3s;
+}
+
+.doubt-form-card input:focus,
+.doubt-form-card textarea:focus {
+    border-color: var(--btn-bg);
+}
+
+.form-success {
+    color: #28a745;
+    margin-bottom: 10px;
+}
+
+.form-error {
+    color: var(--error-color);
+    margin-bottom: 10px;
+}
+
+/* Doubts List */
+.doubts-list .doubt-card {
+    background: var(--card-bg);
+    color: var(--card-color);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
+
+.doubt-card .doubt-subject {
+    font-weight: 700;
+    color: var(--btn-bg);
+    margin-bottom: 5px;
+}
+
+.doubt-card .doubt-meta {
+    font-size: 0.85rem;
+    color: rgba(100,100,100,0.8);
+    margin-bottom: 10px;
+}
+
+.doubt-card .doubt-answer {
+    background: rgba(0,0,0,0.05);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.doubt-card .doubt-status {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media(max-width: 768px) {
+    .doubt-form-card, .doubt-card {
+        padding: 20px 15px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Events Section */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.event-card {
+    background: var(--card-bg);
+    color: var(--card-color);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.event-banner {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.event-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--btn-bg);
+    margin-bottom: 8px;
+}
+
+.event-date, .event-venue {
+    font-size: 0.9rem;
+    color: rgba(100,100,100,0.8);
+    margin-bottom: 6px;
+}
+
+.event-description {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.btn-primary {
+    align-self: flex-start;
+}
+
+/* Responsive */
+@media(max-width: 768px) {
+    .events-grid {
+        gap: 20px;
+    }
+    .event-card {
+        padding: 15px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Resources Section */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.resource-card {
+    background: var(--card-bg);
+    color: var(--card-color);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.resource-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--btn-bg);
+    margin-bottom: 8px;
+}
+
+.resource-category, .resource-uploaded {
+    font-size: 0.9rem;
+    color: rgba(100,100,100,0.8);
+    margin-bottom: 6px;
+}
+
+.resource-desc {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.btn-primary {
+    align-self: flex-start;
+}
+
+/* Responsive */
+@media(max-width: 768px) {
+    .resources-grid {
+        gap: 20px;
+    }
+    .resource-card {
+        padding: 15px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Resource View */
+.resource-view {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    background: var(--card-bg);
+    color: var(--card-color);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.resource-details p {
+    margin-bottom: 12px;
+    font-size: 1rem;
+}
+
+.mt-3 {
+    margin-top: 15px;
+}
+
+@media(max-width: 768px) {
+    .resource-view {
+        padding: 20px 15px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Resource Upload Form */
+.resource-upload {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    background: var(--card-bg);
+    color: var(--card-color);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.resource-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.resource-form input[type="text"],
+.resource-form textarea,
+.resource-form input[type="file"] {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    background: var(--input-bg);
+    color: var(--input-color);
+}
+
+.resource-form textarea {
+    resize: vertical;
+}
+
+.resource-form button {
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Center header and subheader for dashboard */
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Cards grid adjustments for faculty */
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+/* Card hover effects */
+.dashboard-cards .card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==============================
+   🎓 Faculty Attendance Styling
+============================== */
+
+/* Common section styling */
+.prev-attendance,
+.new-attendance {
+    width: 95%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--card-black-bg);
+    color: var(--text-color);
+    border-radius: 18px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    transition: all 0.3s ease-in-out;
+}
+
+body.light-mode .prev-attendance,
+body.light-mode .new-attendance {
+    background: #fdfdfd;
+    color: #222;
+}
+
+.prev-attendance h3,
+.new-attendance h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--btn-bg);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 6px rgba(0,0,0,0.2);
+}
+
+/* Table container */
+.prev-attendance table,
+.new-attendance table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+/* Table head */
+.prev-attendance table thead,
+.new-attendance table thead {
+    background: linear-gradient(135deg, var(--btn-bg), var(--card-blue-bg));
+    color: #fff;
+}
+
+body.light-mode .prev-attendance table thead,
+body.light-mode .new-attendance table thead {
+    background: linear-gradient(135deg, #007bff, #00bcd4);
+    color: #fff;
+}
+
+/* Table cells */
+.prev-attendance th,
+.prev-attendance td,
+.new-attendance th,
+.new-attendance td {
+    text-align: center;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: background 0.3s;
+}
+
+body.light-mode .prev-attendance th,
+body.light-mode .prev-attendance td,
+body.light-mode .new-attendance th,
+body.light-mode .new-attendance td {
+    color: #222;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Row hover effect */
+.prev-attendance tr:hover,
+.new-attendance tr:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+body.light-mode .prev-attendance tr:hover,
+body.light-mode .new-attendance tr:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+/* Status badges */
+.prev-attendance .status,
+.new-attendance .status {
+    padding: 0.4rem 0.9rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-block;
+    letter-spacing: 0.4px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.25);
+}
+
+.prev-attendance .present,
+.new-attendance .present {
+    background: #27ae60;
+    color: #fff;
+}
+
+.prev-attendance .absent,
+.new-attendance .absent {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.prev-attendance .late,
+.new-attendance .late {
+    background: #f1c40f;
+    color: #000;
+}
+
+/* Success message styling */
+.success {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: var(--footer-bg);
+    color: var(--text-color);
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+body.light-mode .success {
+    background: #fff;
+    color: #222;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+}
+
+.success:hover {
+    transform: scale(1.02);
+}
+
+/* Form inputs & select */
+.new-attendance input[type="date"],
+.new-attendance input[type="text"],
+.new-attendance select {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: var(--input-bg);
+    color: var(--input-color);
+    outline: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.new-attendance input[type="date"]:focus,
+.new-attendance input[type="text"]:focus,
+.new-attendance select:focus {
+    border-color: var(--btn-bg);
+    box-shadow: 0 0 10px var(--btn-bg);
+}
+
+/* Submit button */
+.new-attendance button[type="submit"] {
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    background-color: var(--btn-bg);
+    color: var(--btn-color);
+    transition: all 0.3s ease, transform 0.3s;
+}
+
+.new-attendance button[type="submit"]:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+/* Scrollbar for tables */
+.prev-attendance,
+.new-attendance {
+    overflow-x: auto;
+}
+
+.prev-attendance::-webkit-scrollbar,
+.new-attendance::-webkit-scrollbar {
+    height: 8px;
+}
+
+.prev-attendance::-webkit-scrollbar-track,
+.new-attendance::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+}
+
+.prev-attendance::-webkit-scrollbar-thumb,
+.new-attendance::-webkit-scrollbar-thumb {
+    background: var(--btn-bg);
+    border-radius: 10px;
+}
+
+/* Responsive */
+@media(max-width: 768px){
+    .prev-attendance table,
+    .new-attendance table {
+        font-size: 0.85rem;
+    }
+    .prev-attendance th,
+    .prev-attendance td,
+    .new-attendance th,
+    .new-attendance td {
+        padding: 0.6rem 0.4rem;
+    }
+    .prev-attendance h3,
+    .new-attendance h3 {
+        font-size: 1.4rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================================
+   📊 Marks Page Styles (Scoped)
+================================= */
+.marks-page {
+    padding: 40px 20px;
+    min-height: calc(100vh - 120px);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s, color 0.3s;
+}
+
+.marks-page h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--btn-bg);
+    text-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+/* Sections */
+.marks-page section {
+    margin-bottom: 50px;
+    background: var(--card-black-bg);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+body.light-mode .marks-page section {
+    background: #fff;
+    color: #222;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.marks-page section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Table Styling */
+.marks-page table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    min-width: 700px;
+}
+
+.marks-page table th,
+.marks-page table td {
+    text-align: center;
+    padding: 12px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: background 0.3s;
+}
+
+body.light-mode .marks-page table th,
+body.light-mode .marks-page table td {
+    border-bottom: 1px solid #ddd;
+    color: #222;
+}
+
+/* Table Header */
+.marks-page table th {
+    background: linear-gradient(135deg, var(--btn-bg), var(--card-blue-bg));
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+body.light-mode .marks-page table th {
+    background: linear-gradient(135deg, #007bff, #00bcd4);
+}
+
+/* Row Hover */
+.marks-page table tr:hover {
+    background: rgba(255,255,255,0.08);
+}
+body.light-mode .marks-page table tr:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+/* Input Fields in New Marks */
+.marks-page input[type="number"],
+.marks-page input[type="text"],
+.marks-page select {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    width: 90%;
+    max-width: 150px;
+    background: var(--input-bg);
+    color: var(--input-color);
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+.marks-page input:focus,
+.marks-page select:focus {
+    border-color: var(--btn-bg);
+    box-shadow: 0 0 8px var(--btn-bg);
+}
+
+/* Submit Button */
+.marks-page button[type="submit"] {
+    padding: 12px 30px;
+    border-radius: 50px;
+    background: var(--btn-bg);
+    color: var(--btn-color);
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-top: 15px;
+}
+
+.marks-page button[type="submit"]:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+/* Success Message */
+.marks-page .success {
+    text-align: center;
+    color: #28a745;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .marks-page section {
+        padding: 20px;
+    }
+    .marks-page table {
+        min-width: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .marks-page table th,
+    .marks-page table td {
+        padding: 8px 6px;
+        font-size: 0.85rem;
+    }
+    .marks-page input[type="number"],
+    .marks-page input[type="text"],
+    .marks-page select {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .marks-page table {
+        min-width: 500px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ====================== Events Page ====================== */
+
+.dashboard-main h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.dashboard-main section {
+    background-color: var(--card-bg);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+}
+
+.prev-events table,
+.new-event table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+.prev-events table th,
+.prev-events table td,
+.new-event table th,
+.new-event table td {
+    border: 1px solid var(--border-color);
+    padding: 0.6rem;
+    text-align: left;
+    color: var(--text-color);
+}
+
+.prev-events table th,
+.new-event table th {
+    background-color: var(--th-bg);
+    color: var(--th-text);
+}
+
+.prev-events table tr:nth-child(even),
+.new-event table tr:nth-child(even) {
+    background-color: var(--tr-even);
+}
+
+.prev-events table tr:hover,
+.new-event table tr:hover {
+    background-color: var(--tr-hover);
+}
+
+form label {
+    display: block;
+    margin-top: 0.8rem;
+    margin-bottom: 0.3rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="time"],
+form input[type="file"],
+form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+
+form button {
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+form button:hover {
+    background-color: var(--btn-hover);
+}
+
+/* ================= Light / Dark Mode Variables ================= */
+:root {
+    --card-bg: #f9f9f9;
+    --box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    --border-color: #ddd;
+    --text-color: #333;
+    --th-bg: #e0e0e0;
+    --th-text: #000;
+    --tr-even: #f2f2f2;
+    --tr-hover: #dcdcdc;
+    --input-bg: #fff;
+    --btn-bg: #007bff;
+    --btn-text: #fff;
+    --btn-hover: #0056b3;
+}
+
+body.dark-mode {
+    --card-bg: #1e1e2f;
+    --box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    --border-color: #444;
+    --text-color: #ddd;
+    --th-bg: #2c2c3c;
+    --th-text: #fff;
+    --tr-even: #29293d;
+    --tr-hover: #3a3a4f;
+    --input-bg: #2c2c3c;
+    --btn-bg: #4e9af1;
+    --btn-text: #fff;
+    --btn-hover: #3571c3;
+}
+
+/* Success Message */
+.success {
+    color: green;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+
+
+/* ================= Resources Page ================= */
+.dashboard-main {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.dashboard-main h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+section {
+    margin-bottom: 40px;
+    background-color: var(--section-bg);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+}
+
+h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+/* Previous Resources Table */
+.prev-resources table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--table-bg);
+}
+
+.prev-resources th, .prev-resources td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--table-border);
+    color: var(--text-color);
+}
+
+.prev-resources th {
+    background-color: var(--table-header-bg);
+}
+
+/* Table hover effect */
+.prev-resources tr:hover {
+    background-color: var(--table-hover);
+}
+
+/* Add New Resource Form */
+.new-resource form {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-resource label {
+    margin: 8px 0 4px;
+    color: var(--text-color);
+}
+
+.new-resource input[type="text"],
+.new-resource input[type="file"],
+.new-resource textarea {
+    padding: 8px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    margin-bottom: 12px;
+}
+
+.new-resource button {
+    width: 180px;
+    padding: 10px;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.new-resource button:hover {
+    background-color: var(--btn-hover);
+}
+
+/* Success message */
+.success {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* ================= Light/Dark Mode Variables ================= */
+:root {
+    --text-color: #333;
+    --section-bg: #f9f9f9;
+    --box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    --table-bg: #fff;
+    --table-header-bg: #e0e0e0;
+    --table-border: #ccc;
+    --table-hover: #f1f1f1;
+    --input-bg: #fff;
+    --input-border: #ccc;
+    --btn-bg: #4CAF50;
+    --btn-hover: #45a049;
+    --btn-text: #fff;
+}
+
+body.dark-mode {
+    --text-color: #f1f1f1;
+    --section-bg: #2c2c2c;
+    --box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    --table-bg: #3a3a3a;
+    --table-header-bg: #444;
+    --table-border: #555;
+    --table-hover: #505050;
+    --input-bg: #3a3a3a;
+    --input-border: #555;
+    --btn-bg: #2196F3;
+    --btn-hover: #1976D2;
+    --btn-text: #fff;
+}
+
+
+
+
+
+
+
+
+
+.prev-notifications table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.prev-notifications th, .prev-notifications td {
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    text-align: left;
+}
+
+.prev-notifications th {
+    background-color: var(--table-header-bg);
+}
+
+.new-notification form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+}
+
+/* ...and so on, using var(--text-color), var(--input-bg), etc. */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===============================
+   Collaboration & Doubts Page
+   =============================== */
+
+/* Sections */
+.collaboration, .doubts {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+/* Section Headings */
+.collaboration h3, .doubts h3 {
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+/* Tables */
+.collaboration table, .doubts table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.collaboration th, .doubts th,
+.collaboration td, .doubts td {
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    text-align: left;
+}
+
+.collaboration th, .doubts th {
+    background-color: var(--th-bg);
+    color: var(--text-color);
+}
+
+.collaboration tr:nth-child(even), .doubts tr:nth-child(even) {
+    background-color: var(--tr-even-bg);
+}
+
+/* Forms */
+.collaboration input[type="text"],
+.collaboration textarea,
+.doubts input[type="text"],
+.doubts textarea,
+.collaboration select,
+.doubts select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    box-sizing: border-box;
+}
+
+/* Buttons */
+.collaboration button, .doubts button {
+    padding: 10px 20px;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.collaboration button:hover, .doubts button:hover {
+    background-color: var(--btn-hover);
+}
+
+/* Alerts */
+.collaboration .success, .doubts .success {
+    color: var(--success-color);
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.collaboration .error, .doubts .error {
+    color: var(--error-color);
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Links */
+.collaboration a, .doubts a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+.collaboration a:hover, .doubts a:hover {
+    color: var(--link-hover);
+}
+
+/* Optional: Scrollable table for long lists */
+.collaboration table, .doubts table {
+    display: block;
+    overflow-x: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------------- End of CSS ---------------- */
