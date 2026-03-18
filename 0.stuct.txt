@@ -1,0 +1,438 @@
+connect/
+├── index.php
+├── student_login.php
+├── faculty_login.php
+├── admin_login.php
+├── logout.php
+│
+├── dashboards/
+│   ├── student_dashboard.php
+│   ├── faculty_dashboard.php
+│   └── admin_dashboard.php
+│
+├── students/
+│   ├── attendance.php
+│   ├── marks.php
+│   ├── learning_hub.php
+│   ├── collaboration.php
+│   ├── doubt_form.php
+│   ├── events.php
+│   └── resources/
+│       ├── index.php
+│       ├── view_resource.php
+│       └── upload_resource.php
+│
+├── faculty/
+│   ├── attendence.php
+│   ├── collaboration_doubts.php
+│   ├── events.php
+│   ├── marks.php
+│   ├── notification.php
+│   └── resources.php
+│
+├── admin/
+│   ├── user_management.php
+│   ├── content_moderation.php
+│   ├── reports.php
+│   ├── event_control.php
+│   ├── permissions.php
+│   └── database_tools.php
+│
+├── includes/
+│   ├── header.php
+│   ├── footer.php
+│   ├── db.php
+│   └── auth.php
+│
+├── assets/
+│   ├── css/
+│   │   ├── style.css
+│   │   └── jil.i.jpg
+│   ├── js/
+│   │   └── main.js
+│
+└── README.md
+
+
+
+
+
+
+
+-- ============================================
+-- DATABASE: connect_db
+-- PROJECT: Connect (Institute of Engineering & Management, Kolkata)
+-- ============================================
+
+-- 1️ Create Database
+CREATE DATABASE IF NOT EXISTS connect_db;
+USE connect_db;
+
+-- 2️ Students Table
+CREATE TABLE students (
+    student_id INT AUTO_INCREMENT PRIMARY KEY,
+    roll_no VARCHAR(20) UNIQUE NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    department VARCHAR(100),
+    year INT,
+    section VARCHAR(10),
+    contact VARCHAR(15),
+    profile_pic VARCHAR(255) DEFAULT 'default_student.png',
+    join_date DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 3️ Faculty Table
+CREATE TABLE faculty (
+    faculty_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    department VARCHAR(100),
+    designation VARCHAR(100),
+    contact VARCHAR(15),
+    profile_pic VARCHAR(255) DEFAULT 'default_faculty.png',
+    join_date DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 4️ Admins Table
+CREATE TABLE admins (
+    admin_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('superadmin','moderator','staff') DEFAULT 'staff',
+    profile_pic VARCHAR(255) DEFAULT 'default_admin.png',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 5️ Attendance Table
+CREATE TABLE attendance (
+    attendance_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    faculty_id INT NOT NULL,
+    subject VARCHAR(100),
+    attendance_date DATE,
+    status ENUM('Present','Absent','Late') DEFAULT 'Present',
+    remarks VARCHAR(255),
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE,
+    FOREIGN KEY (faculty_id) REFERENCES faculty(faculty_id) ON DELETE CASCADE
+);
+
+-- 6️ Marks Table
+CREATE TABLE marks (
+    mark_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    faculty_id INT,
+    subject VARCHAR(100),
+    exam_type ENUM('Midterm','Final','Assignment','Project'),
+    score FLOAT,
+    total FLOAT,
+    remarks VARCHAR(255),
+    recorded_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE,
+    FOREIGN KEY (faculty_id) REFERENCES faculty(faculty_id) ON DELETE SET NULL
+);
+
+-- 7️ Events Table
+CREATE TABLE events (
+    event_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(200) NOT NULL,
+    description TEXT,
+    department VARCHAR(100),
+    event_date DATE,
+    event_time TIME,
+    venue VARCHAR(150),
+    organizer VARCHAR(100),
+    banner_image VARCHAR(255),
+    qr_code VARCHAR(255),
+    feedback_form_link VARCHAR(255),
+    created_by ENUM('admin','faculty') DEFAULT 'admin',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 8️ Event Registrations Table
+CREATE TABLE event_registrations (
+    registration_id INT AUTO_INCREMENT PRIMARY KEY,
+    event_id INT NOT NULL,
+    student_id INT NOT NULL,
+    check_in_status ENUM('Pending','Checked-in') DEFAULT 'Pending',
+    check_in_time DATETIME,
+    feedback_submitted BOOLEAN DEFAULT 0,
+    FOREIGN KEY (event_id) REFERENCES events(event_id) ON DELETE CASCADE,
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
+);
+
+-- 9️ Resources Table
+CREATE TABLE resources (
+    resource_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(200),
+    description TEXT,
+    file_path VARCHAR(255),
+    category VARCHAR(100),
+    uploaded_by ENUM('faculty','admin') DEFAULT 'faculty',
+    faculty_id INT,
+    upload_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (faculty_id) REFERENCES faculty(faculty_id) ON DELETE SET NULL
+);
+
+-- 10 Doubts Table
+CREATE TABLE doubts (
+    doubt_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    faculty_id INT,
+    subject VARCHAR(100),
+    question TEXT NOT NULL,
+    answer TEXT,
+    status ENUM('Open','Answered','Closed') DEFAULT 'Open',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    answered_at DATETIME,
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE,
+    FOREIGN KEY (faculty_id) REFERENCES faculty(faculty_id) ON DELETE SET NULL
+);
+
+-- 11 Collaboration Table
+CREATE TABLE collaboration (
+    post_id INT AUTO_INCREMENT PRIMARY KEY,
+    author_type ENUM('student','faculty') NOT NULL,
+    author_id INT NOT NULL,
+    title VARCHAR(200),
+    content TEXT,
+    attachment VARCHAR(255),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 12 Notifications Table
+CREATE TABLE notifications (
+    notification_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(150),
+    message TEXT,
+    target ENUM('all','students','faculty','admins') DEFAULT 'all',
+    created_by INT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 13 Feedback Table
+CREATE TABLE feedback (
+    feedback_id INT AUTO_INCREMENT PRIMARY KEY,
+    event_id INT,
+    student_id INT,
+    rating INT CHECK (rating BETWEEN 1 AND 5),
+    comments TEXT,
+    submitted_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (event_id) REFERENCES events(event_id) ON DELETE CASCADE,
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+USE connect_db;
+
+-- ============================================
+-- 🌱 SAMPLE DATA - 10 RECORDS PER TABLE
+-- ============================================
+
+-- 1️⃣ Admins
+INSERT INTO admins (username, email, password, role) VALUES
+('superadmin','admin1@connect.com','admin123','superadmin'),
+('moderator1','admin2@connect.com','admin123','moderator'),
+('staff1','admin3@connect.com','admin123','staff'),
+('staff2','admin4@connect.com','admin123','staff'),
+('moderator2','admin5@connect.com','admin123','moderator'),
+('staff3','admin6@connect.com','admin123','staff'),
+('staff4','admin7@connect.com','admin123','staff'),
+('superadmin2','admin8@connect.com','admin123','superadmin'),
+('staff5','admin9@connect.com','admin123','staff'),
+('moderator3','admin10@connect.com','admin123','moderator');
+
+-- 2️⃣ Faculty
+INSERT INTO faculty (name,email,password,department,designation) VALUES
+('Dr. A. Roy','aroy1@iem.edu','faculty123','CSE','Professor'),
+('Dr. S. Mehta','smehta@iem.edu','faculty123','ECE','Associate Professor'),
+('Dr. R. Das','rdas@iem.edu','faculty123','ME','Assistant Professor'),
+('Dr. P. Sen','psen@iem.edu','faculty123','CSE','Professor'),
+('Dr. K. Ghosh','kghosh@iem.edu','faculty123','IT','Associate Professor'),
+('Dr. M. Roy','mroy@iem.edu','faculty123','CSE','Assistant Professor'),
+('Dr. T. Banerjee','tbanerjee@iem.edu','faculty123','ECE','Professor'),
+('Dr. N. Chatterjee','nchatterjee@iem.edu','faculty123','ME','Associate Professor'),
+('Dr. L. Kumar','lkumar@iem.edu','faculty123','CSE','Assistant Professor'),
+('Dr. A. Singh','asingh@iem.edu','faculty123','IT','Professor');
+
+-- 3️⃣ Students
+INSERT INTO students (roll_no,name,email,password,department,year,section) VALUES
+('IEMCSE202501','Rahul Saha','rahul1@iem.edu','student123','CSE',3,'A'),
+('IEMCSE202502','Sneha Das','sneha2@iem.edu','student123','CSE',3,'A'),
+('IEMECE202503','Arjun Roy','arjun3@iem.edu','student123','ECE',2,'B'),
+('IEMEME202504','Priya Sen','priya4@iem.edu','student123','ME',4,'A'),
+('IEMCSE202505','Ankit Kumar','ankit5@iem.edu','student123','CSE',1,'C'),
+('IEMCSE202506','Ritika Ghosh','ritika6@iem.edu','student123','CSE',2,'B'),
+('IEMECE202507','Karan Mehta','karan7@iem.edu','student123','ECE',3,'C'),
+('IEMEME202508','Simran Das','simran8@iem.edu','student123','ME',2,'A'),
+('IEMCSE202509','Amit Singh','amit9@iem.edu','student123','CSE',4,'B'),
+('IEMCSE202510','Neha Roy','neha10@iem.edu','student123','CSE',3,'C');
+
+-- 4️⃣ Attendance
+INSERT INTO attendance (student_id,faculty_id,subject,attendance_date,status,remarks) VALUES
+(1,1,'Data Structures','2025-10-01','Present',''),
+(2,1,'Data Structures','2025-10-01','Absent','Sick'),
+(3,2,'Signals','2025-10-02','Present',''),
+(4,3,'Thermodynamics','2025-10-03','Late','Missed bus'),
+(5,1,'Algorithms','2025-10-04','Present',''),
+(6,1,'Algorithms','2025-10-04','Present',''),
+(7,2,'Electronics','2025-10-05','Absent','Family function'),
+(8,3,'Mechanics','2025-10-06','Present',''),
+(9,1,'OS','2025-10-07','Late','Traffic'),
+(10,1,'OS','2025-10-07','Present','');
+
+-- 5️⃣ Marks
+INSERT INTO marks (student_id,faculty_id,subject,exam_type,score,total,remarks) VALUES
+(1,1,'Data Structures','Midterm',85,100,'Good'),
+(2,1,'Data Structures','Midterm',78,100,''),
+(3,2,'Signals','Final',92,100,'Excellent'),
+(4,3,'Thermodynamics','Assignment',70,80,''),
+(5,1,'Algorithms','Project',95,100,'Well Done'),
+(6,1,'Algorithms','Assignment',88,100,''),
+(7,2,'Electronics','Midterm',76,100,''),
+(8,3,'Mechanics','Final',89,100,'Great'),
+(9,1,'OS','Midterm',80,100,''),
+(10,1,'OS','Project',92,100,'');
+
+-- 6️⃣ Events
+INSERT INTO events (title,description,department,event_date,event_time,venue,organizer) VALUES
+('TechFest 2025','Annual technical event','CSE','2025-11-12','10:00:00','Main Auditorium','IEM Tech Club'),
+('Robotics Workshop','Hands-on Robotics','ECE','2025-10-15','11:00:00','Lab 2','Dr. S. Mehta'),
+('AI Seminar','AI in Industry','CSE','2025-11-05','14:00:00','Conference Hall','Dr. A. Roy'),
+('Mechanical Expo','ME Innovations','ME','2025-10-20','09:30:00','ME Lab','Dr. R. Das'),
+('Coding Marathon','Hackathon','CSE','2025-12-01','10:00:00','Auditorium','CSE Club'),
+('Cybersecurity Seminar','Network Security','IT','2025-10-25','15:00:00','Lab 5','Dr. A. Singh'),
+('Entrepreneurship Talk','Startup Strategies','All','2025-11-18','13:00:00','Conference Hall','Admin'),
+('Research Symposium','Recent Research','CSE','2025-11-22','10:30:00','Auditorium','Dr. P. Sen'),
+('IoT Workshop','IoT Applications','ECE','2025-12-05','11:00:00','Lab 1','Dr. T. Banerjee'),
+('Renewable Energy Seminar','Sustainable Energy','ME','2025-11-30','09:00:00','ME Lab','Dr. N. Chatterjee');
+
+-- 7️⃣ Resources
+INSERT INTO resources (title,description,file_path,category,uploaded_by,faculty_id) VALUES
+('DSA Notes','Data Structures Notes PDF','uploads/faculty_resources/dsa_notes.pdf','CSE','faculty',1),
+('Signals Notes','Signals & Systems','uploads/faculty_resources/signals.pdf','ECE','faculty',2),
+('Thermodynamics PDF','Thermo notes','uploads/faculty_resources/thermo.pdf','ME','faculty',3),
+('Algorithms Slides','Algorithm concepts','uploads/faculty_resources/algorithms.pdf','CSE','faculty',1),
+('Electronics Lab Manual','Lab guide','uploads/faculty_resources/electronics.pdf','ECE','faculty',2),
+('Mechanics Notes','Mechanics concepts','uploads/faculty_resources/mechanics.pdf','ME','faculty',3),
+('OS Notes','Operating System','uploads/faculty_resources/os.pdf','CSE','faculty',1),
+('Networking PDF','Computer Networks','uploads/faculty_resources/network.pdf','IT','faculty',10),
+('AI Tutorial','AI basics','uploads/faculty_resources/ai.pdf','CSE','faculty',1),
+('Robotics Manual','Robotics Guide','uploads/faculty_resources/robotics.pdf','ECE','faculty',2);
+
+-- 8️⃣ Doubts
+INSERT INTO doubts (student_id,faculty_id,subject,question,status) VALUES
+(1,1,'Data Structures','What is the difference between array and linked list?','Open'),
+(2,1,'Data Structures','Explain stack vs queue.','Answered'),
+(3,2,'Signals','Fourier transform doubts','Open'),
+(4,3,'Thermodynamics','Second law explanation','Closed'),
+(5,1,'Algorithms','Greedy vs DP','Open'),
+(6,1,'Algorithms','Recursion doubts','Answered'),
+(7,2,'Electronics','Op-amp questions','Open'),
+(8,3,'Mechanics','Newton law example','Closed'),
+(9,1,'OS','Process scheduling','Open'),
+(10,1,'OS','Deadlock handling','Answered');
+
+-- 9️⃣ Collaboration
+INSERT INTO collaboration (author_type,author_id,title,content) VALUES
+('student',1,'DSA Group Study','Looking for study partners for DSA.'),
+('student',2,'Signals Discussion','Discussing Signals & Systems problems.'),
+('faculty',1,'Algorithm Tips','Tips for solving algorithms efficiently.'),
+('student',3,'Robotics Ideas','Sharing Robotics project ideas.'),
+('faculty',2,'Electronics Help','Q&A for electronics students.'),
+('student',4,'Thermodynamics Help','Post your questions here.'),
+('student',5,'OS Study Group','Join OS group discussion.'),
+('faculty',3,'Mechanics Insights','Key concepts for mechanics.'),
+('student',6,'AI Discussion','AI basics and projects.'),
+('faculty',1,'Coding Challenges','Weekly coding challenges.');
+
+
+-- 🔟 Notifications
+INSERT INTO notifications (title,message,target,created_by) VALUES
+('Welcome Students','Welcome to Connect portal!','students',1),
+('System Maintenance','Server maintenance on 25-Oct','all',1),
+('Exam Reminder','Midterm exams start next week','students',1),
+('Event Update','TechFest updated with new schedule','all',1),
+('Workshop Alert','Robotics Workshop registration open','students',2),
+('Faculty Meeting','Meeting for faculty members','faculty',2),
+('New Resource','DSA notes uploaded','students',1),
+('Cybersecurity Seminar','Join Cybersecurity seminar','all',10),
+('Research Paper Submission','Submit papers by end of month','faculty',1),
+('Holiday Notice','Institute closed on 2-Nov','all',1);
+
+-- 11️⃣ Feedback
+INSERT INTO feedback (event_id,student_id,rating,comments) VALUES
+(1,1,5,'Great event!'),
+(1,2,4,'Very informative'),
+(2,3,5,'Excellent workshop'),
+(3,4,4,'Good session'),
+(4,5,3,'Could be better'),
+(5,6,5,'Loved it'),
+(6,7,4,'Well organized'),
+(7,8,5,'Very useful'),
+(8,9,5,'Amazing content'),
+(9,10,4,'Good insights');
+
+
+
+
+-- ============================================
+-- Sample Attendance Data for All Faculty
+-- ============================================
+
+-- Faculty 1: Dr. A. Roy (CSE)
+INSERT INTO attendance (student_id, faculty_id, subject, attendance_date, status, remarks) VALUES
+(1, 1, 'Data Structures', '2025-10-20', 'Present', ''),
+(2, 1, 'Data Structures', '2025-10-20', 'Absent', 'Sick'),
+(5, 1, 'Algorithms', '2025-10-21', 'Present', ''),
+(6, 1, 'Algorithms', '2025-10-21', 'Late', 'Late by 10 mins'),
+(9, 1, 'OS', '2025-10-22', 'Present', ''),
+(10, 1, 'OS', '2025-10-22', 'Absent', 'Family emergency');
+
+-- Faculty 2: Dr. S. Mehta (ECE)
+INSERT INTO attendance (student_id, faculty_id, subject, attendance_date, status, remarks) VALUES
+(3, 2, 'Signals', '2025-10-20', 'Present', ''),
+(7, 2, 'Electronics', '2025-10-21', 'Absent', 'Family function');
+
+-- Faculty 3: Dr. R. Das (ME)
+INSERT INTO attendance (student_id, faculty_id, subject, attendance_date, status, remarks) VALUES
+(4, 3, 'Thermodynamics', '2025-10-20', 'Late', 'Traffic'),
+(8, 3, 'Mechanics', '2025-10-21', 'Present', '');
+
+-- Extra mix to test multiple days and subjects
+INSERT INTO attendance (student_id, faculty_id, subject, attendance_date, status, remarks) VALUES
+(1, 1, 'Algorithms', '2025-10-23', 'Present', ''),
+(2, 1, 'OS', '2025-10-23', 'Late', 'Came late'),
+(3, 2, 'Signals', '2025-10-23', 'Absent', 'Sick'),
+(4, 3, 'Thermodynamics', '2025-10-23', 'Present', ''),
+(5, 1, 'OS', '2025-10-24', 'Late', 'Traffic'),
+(6, 1, 'Data Structures', '2025-10-24', 'Present', ''),
+(7, 2, 'Electronics', '2025-10-24', 'Present', ''),
+(8, 3, 'Mechanics', '2025-10-24', 'Absent', 'Family emergency'),
+(9, 1, 'Algorithms', '2025-10-24', 'Present', ''),
+(10, 1, 'Data Structures', '2025-10-24', 'Absent', 'Medical');
